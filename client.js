@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://localhost:8080')
+const ws = new WebSocket('ws://192.168.43.128:8081')
 
 ws.onopen = () => {
     console.log('Connected to the signaling server')
@@ -88,7 +88,8 @@ const handleLogin = async success => {
 
         connection = new RTCPeerConnection(configuration)
 
-        connection.addStream(localStream)
+        // connection.addStream(localStream)
+        connection.ontrack(localStream)
 
         connection.onaddstream = event => {
             document.querySelector('video#remote').srcObject = event.stream
